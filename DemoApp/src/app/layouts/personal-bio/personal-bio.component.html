@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <ul>
+        <li *ngFor="let emps of employeeList" class="myLi">
+          <!--For syntax-->
+          <div class="col s12 m6">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src={{emps.imgpath}} alt="Card image cap" height="250px">
+              <div class="card-body">
+                <h5 class="card-title">{{emps.name}}</h5>
+                <div class="card-content">
+                  <p>{{emps.id}}</p>
+                  <p>{{emps.designation}}</p>
+                  <!--if syntax-->
+                  <p *ngIf="emps.developer != 0; else Configurator">
+                    s/w Developer
+                  </p>
+                  <ng-template #Configurator>
+                    Configurator
+                  </ng-template>
+                  <!--if syntax end-->
+                  <!--Conditional CSS syntax-->
+                  <div [ngStyle]="{'display':emps.isOnline === true ? 'block' : 'none' }">
+                    <img src="../../../assets/online.png" width=16>
+                  </div>
+                  <!--Switch case syntax-->
+                  <div [ngSwitch]="emps.country">
+                    Country:
+                    <img *ngSwitchCase="'India'" src="../../../assets/india.jpg" width="24" />
+                    <img *ngSwitchCase="'Singapore'" src="../../../assets/SG.png" width="24" height="25" />
+                    <img *ngSwitchDeafault src="../../../assets/india.jpg" width="24" />
+                  </div>
+                  <!--Switch case syntax end-->
+                  <br />
+                  <input type="submit" onclick="alert('Get Lost!!');" class="btn btn-primary" value="View Bio" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
